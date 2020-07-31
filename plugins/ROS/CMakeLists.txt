@@ -98,6 +98,7 @@ elseif(COMPILING_WITH_AMENT)
     find_package(rosidl_typesupport_introspection_cpp REQUIRED)
     find_package(rosidl_default_generators REQUIRED)
     find_package(std_msgs REQUIRED)
+    find_package(interfaces REQUIRED)
     find_package(turtlesim REQUIRED)
 
     include_directories(
@@ -124,6 +125,7 @@ elseif(COMPILING_WITH_AMENT)
         nav_msgs
         plotjuggler_msgs
         tf2_msgs
+        interfaces
         turtlesim
         rosidl_generator_cpp
         rosidl_typesupport_cpp

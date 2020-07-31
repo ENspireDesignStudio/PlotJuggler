@@ -37,6 +37,7 @@
     <depend>tf2_ros</depend>
     <depend>tf2_msgs</depend>
     <depend>plotjuggler_msgs</depend>
+    <depend>interfaces</depend>
 
     <!-- common dependancies -->
     <depend>qtbase5-dev</depend>
