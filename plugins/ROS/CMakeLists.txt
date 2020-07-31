@@ -83,6 +83,8 @@ elseif(COMPILING_WITH_AMENT)
     find_package(rclcpp REQUIRED)
     find_package(rcpputils REQUIRED)
     find_package(rosbag2 REQUIRED)
+    find_package(rosbag2_cpp REQUIRED)
+    find_package(rosbag2_storage REQUIRED)
     find_package(rosbag2_transport REQUIRED)
     find_package(sensor_msgs REQUIRED)
     find_package(geometry_msgs REQUIRED)
@@ -91,6 +93,12 @@ elseif(COMPILING_WITH_AMENT)
     find_package(Boost REQUIRED)
     find_package(plotjuggler_msgs REQUIRED)
     find_package(tf2_msgs REQUIRED)
+    find_package(rosidl_generator_cpp REQUIRED)
+    find_package(rosidl_typesupport_cpp REQUIRED)
+    find_package(rosidl_typesupport_introspection_cpp REQUIRED)
+    find_package(rosidl_default_generators REQUIRED)
+    find_package(std_msgs REQUIRED)
+    find_package(turtlesim REQUIRED)
 
     include_directories(
         ./ ../ ../
@@ -105,15 +113,22 @@ elseif(COMPILING_WITH_AMENT)
 
     set(AMENT_DEPENDECIES
         rclcpp
-        rosbag2
         rcpputils
         fastcdr
+        rosbag2
+        rosbag2_cpp
+        rosbag2_storage
         rosbag2_transport
         sensor_msgs
         geometry_msgs
         nav_msgs
         plotjuggler_msgs
         tf2_msgs
+        turtlesim
+        rosidl_generator_cpp
+        rosidl_typesupport_cpp
+        rosidl_typesupport_introspection_cpp
+        rosidl_default_generators
         )
 
     add_library( commonROS STATIC ${COMMON_SRC} ${COMMON_UI_SRC})

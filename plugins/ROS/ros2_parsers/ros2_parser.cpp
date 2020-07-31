@@ -150,7 +150,8 @@ void CompositeParser::registerMessageType(const std::string& topic_name, const s
   }
   else
   {
-    parser.reset(new IntrospectionParser(topic_name, type, _plot_data));
+    // TODO(alex): NOTE changed to include full topic type, investigate if this is required or not
+    parser.reset(new IntrospectionParser(topic_name, topic_type, _plot_data));
   }
 
   parser->setMaxArrayPolicy(_discard_policy, _max_array_size);

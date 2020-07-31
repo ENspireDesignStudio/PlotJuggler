@@ -2,8 +2,8 @@
 
 #include <rosidl_typesupport_introspection_cpp/message_introspection.hpp>
 #include <rosidl_typesupport_introspection_cpp/field_types.hpp>
-#include <rosbag2/typesupport_helpers.hpp>
-#include <rosbag2/types/introspection_message.hpp>
+#include <rosbag2_cpp/typesupport_helpers.hpp>
+#include <rosbag2_cpp/types/introspection_message.hpp>
 #include <rcutils/time.h>
 #include <functional>
 #include <cmath>
@@ -16,8 +16,14 @@ rcutils_allocator_t TopicInfo::allocator = rcutils_get_default_allocator();
 TopicInfo::TopicInfo(const std::string& type)
 {
   topic_type = type;
-  introspection_support = rosbag2::get_typesupport(type, rosidl_typesupport_introspection_cpp::typesupport_identifier);
-  type_support = rosbag2::get_typesupport(type, rosidl_typesupport_cpp::typesupport_identifier);
+
+  introspection_support = rosbag2_cpp::get_typesupport_handle(type,
+                                                              rosidl_typesupport_introspection_cpp::typesupport_identifier,
+                                                              rosbag2_cpp::get_typesupport_library(type,
+                                                                                                   rosidl_typesupport_introspection_cpp::typesupport_identifier));
+  type_support = rosbag2_cpp::get_typesupport_handle(type, rosidl_typesupport_cpp::typesupport_identifier,
+                                                     rosbag2_cpp::get_typesupport_library(type,
+                                                                                          rosidl_typesupport_cpp::typesupport_identifier));
   has_header_stamp = Ros2Introspection::TypeHasHeader(introspection_support);
 }
 
@@ -62,6 +68,7 @@ Parser::Parser(const std::string& topic_name, const std::string& type_name)
 
   std::function<void(StringTreeNode * node, const TypeSupport*)> recursivelyCreateTree;
   recursivelyCreateTree = [&](StringTreeNode* node, const TypeSupport* type_data) {
+
     const auto* members = static_cast<const MessageMembers*>(type_data->data);
 
     node->children().reserve(members->member_count_);

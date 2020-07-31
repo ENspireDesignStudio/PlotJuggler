@@ -15,7 +15,7 @@
 #include <unordered_map>
 #include <QMessageBox>
 #include <tf2_ros/qos.hpp>
-#include <rosbag2/types.hpp>
+#include <rosbag2_cpp/types.hpp>
 #include <rmw/rmw.h>
 #include <rmw/types.h>
 #include "publisher_select_dialog.h"
